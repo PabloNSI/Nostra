@@ -1,220 +1,57 @@
-@import "tailwindcss";
-
 :root {
-  /* Color Palette - WCAG 2.2 AA Compliant */
-  --bg-primary: #0F1419;
-  --bg-secondary: #1A202C;
-  --text-primary: #E2E8F0;
-  --text-secondary: #A0AEC0;
-  --accent-primary: #6366F1;
-  --accent-secondary: #8B5CF6;
-  
-  /* Emotion Colors */
-  --emotion-joy: #FBBF24;
-  --emotion-sadness: #3B82F6;
-  --emotion-anger: #EF4444;
-  --emotion-fear: #8B5CF6;
-  --emotion-surprise: #EC4899;
-  --emotion-fatigue: #6B7280;
-  --emotion-disgust: #10B981;
-  
-  /* Neutral Colors */
-  --success: #10B981;
-  --error: #EF4444;
-  --warning: #F59E0B;
-  --info: #3B82F6;
-  
-  /* Spacing System (8px base) */
-  --space-xs: 4px;
-  --space-sm: 8px;
-  --space-md: 16px;
-  --space-lg: 24px;
-  --space-xl: 32px;
-  --space-2xl: 48px;
-  
-  /* Transitions */
-  --transition-fast: 150ms ease-in-out;
-  --transition-medium: 300ms ease-in-out;
+  /* MÁRGENES EXTERIORES (viewport) */
+  --margin-top: 24px;
+  --margin-bottom: 24px;
+  --margin-left: 16px;
+  --margin-right: 16px;
+
+  /* MÁRGENES EN DESKTOP (1440px) */
+  --margin-horizontal-desktop: 32px;
+
+  /* ESPACIOS INTERIORES (Grid 8px) */
+  --gap-xs: 4px;
+  --gap-sm: 8px;
+  --gap-md: 16px;
+  --gap-lg: 24px;
+  --gap-xl: 32px;
+  --gap-2xl: 48px;
+
+  /* NAV / HEADER heights (ajustar si tu Header/Nav cambian) */
+  --bottom-nav-height: 80px;
+  --header-height: 48px;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  line-height: 1.5;
-}
-
-/* Typography System */
-h1 {
-  font-size: 32px;
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-h2 {
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 1.3;
-}
-
-h3 {
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 1.4;
-}
-
-p, body {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.5;
-}
-
-small {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.4;
-}
-
-/* Focus Styles for Accessibility */
-*:focus-visible {
-  outline: 2px solid var(--accent-primary);
-  outline-offset: 2px;
-}
-
-/* Remove default button styles */
-button {
-  font-family: inherit;
-  font-size: inherit;
-}
-
-/* Scrollbar Styling */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg-secondary);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--text-secondary);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--text-primary);
-}
-
-/* ============================================
-   LOGIN SCREEN SPECIFIC STYLES
-   ============================================ */
-
-/* Input Group Styling */
-.input-group {
+/* Reglas base del layout */
+.app-container {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+  background: #0F1419;
+  color: #E2E8F0;
+}
+
+.app-header {
+  padding: var(--margin-top) var(--margin-left) var(--gap-md) var(--margin-left);
+  border-bottom: 1px solid #1A202C;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #0F1419;
+}
+
+.app-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--gap-lg) var(--margin-left) var(--margin-bottom) var(--margin-left);
+  padding-bottom: calc(var(--margin-bottom) + var(--bottom-nav-height));
+  max-width: 1440px;
+  margin: 0 auto;
   width: 100%;
 }
 
-.input-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-/* Input Base Styles - Consistent with design system */
-.input-wrapper input {
-  font-family: 'Inter', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Password Toggle Button Positioning */
-.password-wrapper .toggle-password-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Biometric Button Styles */
-.biometric-btn {
-  position: relative;
-}
-
-/* Spinner Animation */
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.spinner {
-  animation: spin 1s linear infinite;
-}
-
-/* Enhanced Focus States for Login Form */
-.input-group input:focus {
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-}
-
-/* Error State Enhancement */
-.input-group input[aria-invalid="true"] {
-  animation: shake 0.3s ease-in-out;
-}
-
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-4px); }
-  75% { transform: translateX(4px); }
-}
-
-/* Biometric Hint Text */
-.biometric-hint {
-  font-size: 12px;
-  color: var(--text-secondary);
-  opacity: 0.7;
-}
-
-/* Loading State for Submit Button */
-button[aria-busy="true"] {
-  position: relative;
-  color: transparent;
-}
-
-button[aria-busy="true"]::after {
-  content: "";
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  top: 50%;
-  left: 50%;
-  margin-left: -8px;
-  margin-top: -8px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-top-color: white;
-  border-radius: 50%;
-  animation: spin 0.6s linear infinite;
-}
-
-/* Reduce Motion for Accessibility */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-  
-  .spinner {
-    animation: none;
-    opacity: 0.5;
+@media (min-width: 1024px) {
+  .app-content {
+    padding: var(--gap-lg) var(--margin-horizontal-desktop);
   }
 }
