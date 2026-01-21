@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Play, Edit2, Trash2, Eye, EyeOff } from 'lucide-react';
+import { X, Play, Edit2, Trash2, Eye, EyeOff, ChevronDown, ChevronUp } from 'lucide-react';
 import { Card } from '../Card';
 import { Badge } from '../Badge';
 import { Button } from '../Button';
@@ -10,6 +10,8 @@ interface EntryDetailScreenProps {
 
 export function EntryDetailScreen({ onClose }: EntryDetailScreenProps) {
   const [blackBoxMode, setBlackBoxMode] = React.useState(false);
+  const [showBlackBoxDetails, setShowBlackBoxDetails] = React.useState(false);
+  const [userFeedback, setUserFeedback] = React.useState<boolean | null>(null);
   
   const prosodyMetrics = [
     { label: 'Pitch', value: '142 Hz', percentage: 65, icon: '🎵' },
@@ -34,6 +36,37 @@ export function EntryDetailScreen({ onClose }: EntryDetailScreenProps) {
       text: 'Comparte este logro con personas cercanas'
     }
   ];
+  
+  // Black Box Analysis Data
+  const blackBoxAnalysis = {
+    textAnalysis: {
+      keywords: ['reunión', 'equipo', 'proyecto', 'motivados'],
+      sentiment: 'positive',
+      emotionalWords: [
+        { word: 'feliz', emotion: 'joy', weight: 1.0 },
+        { word: 'gran', emotion: 'joy', weight: 0.8 },
+        { word: 'mejor', emotion: 'joy', weight: 0.9 }
+      ],
+      negations: [],
+      intensifiers: ['muy', 'realmente']
+    },
+    prosodyAnalysis: {
+      interpretation: 'Tono ascendente sugiere entusiasmo, alta energía indica emoción intensa',
+      confidence: 78
+    },
+    contextualFactors: {
+      timeOfDay: 'tarde',
+      dayOfWeek: 'miércoles',
+      relatedEntries: 3
+    },
+    decisionPath: [
+      { step: 1, rule: 'Análisis de palabras emocionales en el texto', value: 3, contribution: 40 },
+      { step: 2, rule: 'Modificadores detectados (0 negaciones, 2 intensificadores)', value: 2, contribution: 15 },
+      { step: 3, rule: 'Análisis prosódico: pitch rising, energía high', value: 72, contribution: 30 },
+      { step: 4, rule: 'Cálculo de confianza basado en múltiples factores', value: 85, contribution: 15 }
+    ],
+    overallConfidence: 85
+  };
   
   return (
     <div className="min-h-screen bg-slate-900">
@@ -159,6 +192,64 @@ export function EntryDetailScreen({ onClose }: EntryDetailScreenProps) {
             <p className="text-slate-400">
               Modo Black Box activado. El análisis está oculto.
             </p>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setShowBlackBoxDetails(!showBlackBoxDetails)}
+            >
+              {showBlackBoxDetails ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              {showBlackBoxDetails ? 'Ocultar detalles' : 'Mostrar detalles'}
+            </Button>
+            {showBlackBoxDetails && (
+              <div className="mt-4">
+                <h4 className="text-slate-300 mb-2">Análisis de texto</h4>
+                <p className="text-sm text-slate-400">
+                  Palabras clave: {blackBoxAnalysis.textAnalysis.keywords.join(', ')}
+                </p>
+                <p className="text-sm text-slate-400">
+                  Sentimiento: {blackBoxAnalysis.textAnalysis.sentiment}
+                </p>
+                <p className="text-sm text-slate-400">
+                  Palabras emocionales: {blackBoxAnalysis.textAnalysis.emotionalWords.map(word => `${word.word} (${word.emotion})`).join(', ')}
+                </p>
+                <p className="text-sm text-slate-400">
+                  Modificadores: {blackBoxAnalysis.textAnalysis.intensifiers.join(', ')}
+                </p>
+                
+                <h4 className="text-slate-300 mb-2 mt-4">Análisis prosódico</h4>
+                <p className="text-sm text-slate-400">
+                  Interpretación: {blackBoxAnalysis.prosodyAnalysis.interpretation}
+                </p>
+                <p className="text-sm text-slate-400">
+                  Confianza: {blackBoxAnalysis.prosodyAnalysis.confidence}%
+                </p>
+                
+                <h4 className="text-slate-300 mb-2 mt-4">Factores contextuales</h4>
+                <p className="text-sm text-slate-400">
+                  Hora del día: {blackBoxAnalysis.contextualFactors.timeOfDay}
+                </p>
+                <p className="text-sm text-slate-400">
+                  Día de la semana: {blackBoxAnalysis.contextualFactors.dayOfWeek}
+                </p>
+                <p className="text-sm text-slate-400">
+                  Entradas relacionadas: {blackBoxAnalysis.contextualFactors.relatedEntries}
+                </p>
+                
+                <h4 className="text-slate-300 mb-2 mt-4">Ruta de decisión</h4>
+                <ul className="list-disc list-inside text-sm text-slate-400">
+                  {blackBoxAnalysis.decisionPath.map(step => (
+                    <li key={step.step}>
+                      Paso {step.step}: {step.rule} - Valor: {step.value}, Contribución: {step.contribution}%
+                    </li>
+                  ))}
+                </ul>
+                
+                <h4 className="text-slate-300 mb-2 mt-4">Confianza general</h4>
+                <p className="text-sm text-slate-400">
+                  Confianza general: {blackBoxAnalysis.overallConfidence}%
+                </p>
+              </div>
+            )}
           </Card>
         )}
       </div>

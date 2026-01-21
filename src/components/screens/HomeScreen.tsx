@@ -1,5 +1,5 @@
 import React from 'react';
-import { Plus, Network, Calendar, Upload, TrendingUp } from 'lucide-react';
+import { Plus, Network, Calendar, Upload, TrendingUp, Lightbulb, ThumbsUp, ThumbsDown } from 'lucide-react';
 import { Header } from '../Header';
 import { BottomNav } from '../BottomNav';
 import { Card } from '../Card';
@@ -13,11 +13,45 @@ interface HomeScreenProps {
 }
 
 export function HomeScreen({ userName, onNavigate, activeTab, onTabChange }: HomeScreenProps) {
+  const [feedbackGiven, setFeedbackGiven] = React.useState<Record<string, boolean>>({});
+  
   const recentEntries = [
     { id: 1, date: 'Hoy, 14:30', emotion: 'joy' as const, snippet: 'Gran reunión con el equipo, todo salió mejor de lo esperado...' },
     { id: 2, date: 'Ayer, 20:15', emotion: 'sadness' as const, snippet: 'Me siento un poco abrumado con todo el trabajo...' },
     { id: 3, date: 'Hace 2 días', emotion: 'surprise' as const, snippet: 'No esperaba esa llamada de mi amigo de la universidad...' }
   ];
+  
+  // Personalized recommendations
+  const recommendations = [
+    {
+      id: 'rec_1',
+      icon: '🚶',
+      title: 'Sal a caminar 15 minutos',
+      description: 'El ejercicio ligero puede mejorar tu estado de ánimo',
+      priority: 'high' as const,
+      category: 'activity'
+    },
+    {
+      id: 'rec_2',
+      icon: '😴',
+      title: 'Mejora tu rutina de sueño',
+      description: 'Has dormido menos esta semana. Intenta acostarte 30 min antes',
+      priority: 'high' as const,
+      category: 'habit'
+    },
+    {
+      id: 'rec_3',
+      icon: '📝',
+      title: 'Documenta este momento positivo',
+      description: 'Escribir sobre momentos felices refuerza el bienestar',
+      priority: 'medium' as const,
+      category: 'reflection'
+    }
+  ];
+  
+  const handleFeedback = (recId: string, helpful: boolean) => {
+    setFeedbackGiven({ ...feedbackGiven, [recId]: helpful });
+  };
   
   return (
     <div className="min-h-screen bg-slate-900 pb-20">
@@ -90,6 +124,58 @@ export function HomeScreen({ userName, onNavigate, activeTab, onTabChange }: Hom
           </Card>
         </div>
         
+        {/* Personalized Recommendations */}
+        <div>
+          <div className="flex items-center gap-2 mb-4">
+            <Lightbulb className="w-5 h-5 text-amber-400" />
+            <h3 className="text-slate-300">Recomendaciones para ti</h3>
+          </div>
+          <div className="space-y-3">
+            {recommendations.map(rec => (
+              <Card 
+                key={rec.id}
+                className="p-4"
+              >
+                <div className="flex gap-3">
+                  <span className="text-3xl flex-shrink-0">{rec.icon}</span>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-start justify-between gap-2 mb-1">
+                      <h4 className="text-slate-200">{rec.title}</h4>
+                      {rec.priority === 'high' && (
+                        <Badge type="status" status="warning">Alta</Badge>
+                      )}
+                    </div>
+                    <p className="text-sm text-slate-400 mb-3">{rec.description}</p>
+                    
+                    {!feedbackGiven[rec.id] ? (
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => handleFeedback(rec.id, true)}
+                          className="flex items-center gap-1 px-2 py-1 text-xs text-green-400 hover:bg-green-500/10 rounded transition-colors"
+                        >
+                          <ThumbsUp className="w-3 h-3" />
+                          Útil
+                        </button>
+                        <button
+                          onClick={() => handleFeedback(rec.id, false)}
+                          className="flex items-center gap-1 px-2 py-1 text-xs text-slate-500 hover:bg-slate-700 rounded transition-colors"
+                        >
+                          <ThumbsDown className="w-3 h-3" />
+                          No útil
+                        </button>
+                      </div>
+                    ) : (
+                      <p className="text-xs text-green-400">
+                        ✓ Gracias por tu feedback
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+        
         {/* Recent Entries */}
         <div>
           <h3 className="text-slate-300 mb-4">Recientes</h3>
@@ -112,14 +198,15 @@ export function HomeScreen({ userName, onNavigate, activeTab, onTabChange }: Hom
           </div>
         </div>
         
-        {/* Recommendation Card */}
+        {/* Correlation Insight Card */}
         <Card className="p-6 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 border-indigo-500/30">
           <div className="flex gap-3">
             <TrendingUp className="w-6 h-6 text-indigo-400 flex-shrink-0" />
             <div>
-              <h3 className="text-indigo-300 mb-2">Recomendación del día</h3>
+              <h3 className="text-indigo-300 mb-2">Insight detectado</h3>
               <p className="text-slate-300 text-sm">
-                Has estado durmiendo menos esta semana. Intenta acostarte 30 minutos antes para mejorar tu estado de ánimo.
+                Cuando duermes más de 7 horas, tu nivel de alegría aumenta en promedio un 35%. 
+                Intenta mantener este hábito de sueño consistente.
               </p>
             </div>
           </div>
