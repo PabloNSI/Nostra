@@ -28,7 +28,12 @@ export function SettingsScreen({ activeTab, onTabChange, onLogout }: SettingsScr
     <div className="min-h-screen bg-slate-900 pb-20">
       <Header title="Settings" />
       
-      <main className="px-6 py-6 space-y-6">
+      <main style={{ 
+  marginLeft: '16px', 
+  marginRight: '16px',
+  paddingTop: '24px',
+  paddingBottom: '24px'
+}}>
         {/* Account Section */}
         <div>
           <h3 className="text-slate-400 text-sm mb-4">ACCOUNT</h3>

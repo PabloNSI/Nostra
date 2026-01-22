@@ -30,7 +30,7 @@ type Tab = 'home' | 'timeline' | 'graph' | 'settings';
 function App() {
   const [currentScreen, setCurrentScreen] = useState<Screen>('login');
   const [activeTab, setActiveTab] = useState<Tab>('home');
-  const [userName, setUserName] = useState('Usuario');
+  const [userName, setUserName] = useState('User');
   const [toast, setToast] = useState<{
     show: boolean;
     message: string;
@@ -46,9 +46,9 @@ function App() {
   };
 
   const handleUnlock = (username: string) => {
-    setUserName(username || 'Usuario');
+    setUserName(username || 'User');
     setCurrentScreen('home');
-    showToast(`¡Bienvenido/a, ${username || 'Usuario'}!`, 'success');
+    showToast(`Welcome, ${username || 'User'}!`, 'success');
   };
 
   const handleNavigate = (screen: Screen) => {
@@ -77,19 +77,19 @@ function App() {
 
   const handleSaveEntry = (text: string, analyze: boolean) => {
     setCurrentScreen('entry-detail');
-    showToast('Entrada guardada correctamente', 'success');
+    showToast('Entry saved successfully', 'success');
   };
 
   const handleStopRecording = () => {
     setCurrentScreen('entry-detail');
-    showToast('Audio procesado correctamente', 'success');
+    showToast('Audio processed successfully', 'success');
   };
 
   const handleLogout = () => {
     setCurrentScreen('login');
     setActiveTab('home');
-    setUserName('Usuario');
-    showToast('Sesión cerrada', 'info');
+    setUserName('User');
+    showToast('Session closed', 'info');
   };
 
   const renderScreen = () => {

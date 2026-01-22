@@ -41,7 +41,12 @@ export function TimelineScreen({ activeTab, onTabChange }: TimelineScreenProps) 
     <div className="min-h-screen bg-slate-900 pb-20">
       <Header title="Emotional Timeline" />
       
-      <main className="px-6 py-6 space-y-6">
+      <main style={{ 
+  marginLeft: '16px', 
+  marginRight: '16px',
+  paddingTop: '24px',
+  paddingBottom: '24px'
+}}>
         {/* View Controls */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">

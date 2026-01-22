@@ -36,7 +36,12 @@ export function GraphScreen({ activeTab, onTabChange }: GraphScreenProps) {
     <div className="min-h-screen bg-slate-900 pb-20">
       <Header title="Cognitive Graph" />
       
-      <main className="px-6 py-6 space-y-6">
+      <main style={{ 
+  marginLeft: '16px', 
+  marginRight: '16px',
+  paddingTop: '24px',
+  paddingBottom: '24px'
+}}>
         {/* Controls */}
         <div className="flex items-center justify-between">
           <div className="flex gap-2">

@@ -22,7 +22,7 @@ export function QuickWriteScreen({ onClose, onSave, onVoiceClick }: QuickWriteSc
   return (
     <div className="min-h-screen bg-slate-900 flex flex-col">
       {/* Header */}
-      <div className="flex items-center justify-between px-6 py-4 border-b border-slate-700/50">
+      <div style={{ marginLeft: '16px', marginRight: '16px' }} className="flex items-center justify-between py-4 border-b border-slate-700/50">
         <h2 className="text-slate-200">New entry</h2>
         <button
           onClick={onClose}
@@ -34,7 +34,7 @@ export function QuickWriteScreen({ onClose, onSave, onVoiceClick }: QuickWriteSc
       </div>
       
       {/* Main Content */}
-      <div className="flex-1 flex flex-col px-6 py-6">
+      <div style={{ marginLeft: '16px', marginRight: '16px' }} className="flex-1 flex flex-col py-6">
         <textarea
           value={text}
           onChange={(e) => setText(e.target.value)}
@@ -61,8 +61,12 @@ export function QuickWriteScreen({ onClose, onSave, onVoiceClick }: QuickWriteSc
         </div>
       </div>
       
-      {/* Action Buttons */}
-      <div className="px-6 py-6 border-t border-slate-700/50 space-y-3">
+      {/* Action Buttons - Más espacio */}
+      <div style={{ 
+        marginLeft: '16px', 
+        marginRight: '16px',
+        marginBottom: '24px' // Agregado margen inferior
+      }} className="pt-6 border-t border-slate-700/50 space-y-6">
         <button
           onClick={onVoiceClick}
           className="w-full flex items-center justify-center gap-3 py-4 rounded-full bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 transition-colors group"

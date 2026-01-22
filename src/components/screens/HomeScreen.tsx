@@ -57,9 +57,14 @@ export function HomeScreen({ userName, onNavigate, activeTab, onTabChange }: Hom
     <div className="min-h-screen bg-slate-900 pb-20">
       <Header userName={userName} />
       
-      <main className="px-6 py-6 space-y-6">
+      <main style={{ 
+        marginLeft: '16px', 
+        marginRight: '16px',
+        paddingTop: '24px',
+        paddingBottom: '24px'
+      }}>
         {/* Today's Emotion Card */}
-        <Card variant="elevated" className="p-6">
+        <Card variant="elevated" className="p-6 mb-6">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-slate-300">Today</h3>
             <span className="text-sm text-slate-400">Dec 11, 2025</span>
@@ -82,7 +87,7 @@ export function HomeScreen({ userName, onNavigate, activeTab, onTabChange }: Hom
         </Card>
         
         {/* Quick Actions Grid */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-4 mb-6">
           <Card 
             onClick={() => onNavigate('quick-write')}
             className="p-6 flex flex-col items-center justify-center gap-3 min-h-[140px]"
@@ -135,7 +140,7 @@ export function HomeScreen({ userName, onNavigate, activeTab, onTabChange }: Hom
         </div>
         
         {/* Personalized Recommendations */}
-        <div>
+        <div className="mb-6">
           <div className="flex items-center gap-2 mb-4">
             <Lightbulb className="w-5 h-5 text-amber-400" />
             <h3 className="text-slate-300">Recommendations for you</h3>
@@ -187,7 +192,7 @@ export function HomeScreen({ userName, onNavigate, activeTab, onTabChange }: Hom
         </div>
         
         {/* Recent Entries */}
-        <div>
+        <div className="mb-6">
           <h3 className="text-slate-300 mb-4">Recent</h3>
           <div className="space-y-3">
             {recentEntries.map(entry => (

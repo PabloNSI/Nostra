@@ -54,7 +54,12 @@ export function ImportsScreen({ activeTab, onTabChange }: ImportsScreenProps) {
     <div className="min-h-screen bg-slate-900 pb-20">
       <Header title="Import memories" />
       
-      <main className="px-6 py-6 space-y-6">
+      <main style={{ 
+  marginLeft: '16px', 
+  marginRight: '16px',
+  paddingTop: '24px',
+  paddingBottom: '24px'
+}}>
         {/* Upload Zone */}
         <Card className="p-8">
           <div className="border-2 border-dashed border-slate-600 rounded-xl p-12 text-center hover:border-indigo-500 transition-colors cursor-pointer">

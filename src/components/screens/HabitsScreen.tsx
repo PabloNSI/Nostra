@@ -33,7 +33,12 @@ export function HabitsScreen({ activeTab, onTabChange }: HabitsScreenProps) {
     <div className="min-h-screen bg-slate-900 pb-20">
       <Header title="Habits & Well-being" />
       
-      <main className="px-6 py-6 space-y-6">
+      <main style={{ 
+  marginLeft: '16px', 
+  marginRight: '16px',
+  paddingTop: '24px',
+  paddingBottom: '24px'
+}}>
         {/* Sleep Tracker */}
         <Card className="p-6">
           <div className="flex items-center gap-3 mb-4">
