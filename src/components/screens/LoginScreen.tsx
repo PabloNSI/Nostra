@@ -3,7 +3,7 @@ import { Eye, EyeOff, Fingerprint } from "lucide-react";
 import { Button } from "../Button";
 
 interface LoginScreenProps {
-  onUnlock: () => void;
+  onUnlock: (username: string) => void;
 }
 
 export function LoginScreen({ onUnlock }: LoginScreenProps) {
@@ -43,7 +43,7 @@ export function LoginScreen({ onUnlock }: LoginScreenProps) {
       // Simulate loading
       setTimeout(() => {
         setIsLoading(false);
-        onUnlock();
+        onUnlock(username);
       }, 800);
     }
   };
@@ -52,7 +52,7 @@ export function LoginScreen({ onUnlock }: LoginScreenProps) {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
-      onUnlock();
+      onUnlock(username);
     }, 1500);
   };
 

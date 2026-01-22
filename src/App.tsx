@@ -30,6 +30,7 @@ type Tab = 'home' | 'timeline' | 'graph' | 'settings';
 function App() {
   const [currentScreen, setCurrentScreen] = useState<Screen>('login');
   const [activeTab, setActiveTab] = useState<Tab>('home');
+  const [userName, setUserName] = useState('Usuario');
   const [toast, setToast] = useState<{
     show: boolean;
     message: string;
@@ -44,9 +45,10 @@ function App() {
     setToast({ show: true, message, type });
   };
 
-  const handleUnlock = () => {
+  const handleUnlock = (username: string) => {
+    setUserName(username || 'Usuario');
     setCurrentScreen('home');
-    showToast('Bienvenido a NOSTRA', 'success');
+    showToast(`¡Bienvenido/a, ${username || 'Usuario'}!`, 'success');
   };
 
   const handleNavigate = (screen: Screen) => {
@@ -86,6 +88,7 @@ function App() {
   const handleLogout = () => {
     setCurrentScreen('login');
     setActiveTab('home');
+    setUserName('Usuario');
     showToast('Sesión cerrada', 'info');
   };
 
@@ -97,7 +100,7 @@ function App() {
       case 'home':
         return (
           <HomeScreen
-            userName="Usuario"
+            userName={userName}
             onNavigate={handleNavigate}
             activeTab={activeTab}
             onTabChange={handleTabChange}
@@ -177,7 +180,7 @@ function App() {
         );
       
       default:
-        return <HomeScreen userName="Usuario" onNavigate={handleNavigate} activeTab={activeTab} onTabChange={handleTabChange} />;
+        return <HomeScreen userName={userName} onNavigate={handleNavigate} activeTab={activeTab} onTabChange={handleTabChange} />;
     }
   };
 

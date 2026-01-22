@@ -94,33 +94,43 @@ export function HomeScreen({ userName, onNavigate, activeTab, onTabChange }: Hom
           </Card>
           
           <Card 
-            onClick={() => onNavigate('graph')}
+            onClick={() => onNavigate('voice-entry')}
             className="p-6 flex flex-col items-center justify-center gap-3 min-h-[140px]"
           >
-            <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center">
-              <Network className="w-6 h-6 text-purple-400" />
+            <div className="w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center">
+              <span className="text-2xl">🎤</span>
             </div>
-            <span className="text-slate-300 text-center">Grafo</span>
+            <span className="text-slate-300 text-center">Voz</span>
           </Card>
           
           <Card 
-            onClick={() => onNavigate('timeline')}
+            onClick={() => onNavigate('habits')}
             className="p-6 flex flex-col items-center justify-center gap-3 min-h-[140px]"
           >
-            <div className="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center">
-              <Calendar className="w-6 h-6 text-blue-400" />
+            <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center">
+              <span className="text-2xl">💪</span>
             </div>
-            <span className="text-slate-300 text-center">Timeline</span>
+            <span className="text-slate-300 text-center">Hábitos</span>
           </Card>
           
           <Card 
             onClick={() => onNavigate('imports')}
             className="p-6 flex flex-col items-center justify-center gap-3 min-h-[140px]"
           >
-            <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center">
-              <Upload className="w-6 h-6 text-green-400" />
+            <div className="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center">
+              <Upload className="w-6 h-6 text-amber-400" />
             </div>
             <span className="text-slate-300 text-center">Importar</span>
+          </Card>
+          
+          <Card 
+            onClick={() => onNavigate('zen')}
+            className="p-6 flex flex-col items-center justify-center gap-3 min-h-[140px] col-span-2"
+          >
+            <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center">
+              <span className="text-2xl">🧘</span>
+            </div>
+            <span className="text-slate-300 text-center">Modo Zen - Escribe sin distracciones</span>
           </Card>
         </div>
         

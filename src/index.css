@@ -490,6 +490,10 @@
     z-index: 50;
   }
 
+  .col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+
   .mx-auto {
     margin-inline: auto;
   }
@@ -2105,6 +2109,8 @@
 :root {
   --bg-primary: #0f1419;
   --bg-secondary: #1a202c;
+  --bg-card: #1a202c;
+  --border-color: #2d3748;
   --text-primary: #e2e8f0;
   --text-secondary: #a0aec0;
   --accent-primary: #6366f1;
@@ -2126,8 +2132,17 @@
   --space-lg: 24px;
   --space-xl: 32px;
   --space-2xl: 48px;
+  --margin-top: 24px;
+  --margin-bottom: 24px;
+  --margin-left: 16px;
+  --margin-right: 16px;
   --transition-fast: .15s ease-in-out;
   --transition-medium: .3s ease-in-out;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-full: 50%;
 }
 
 * {
