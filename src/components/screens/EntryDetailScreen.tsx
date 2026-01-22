@@ -132,7 +132,7 @@ export function EntryDetailScreen({
   return (
     <div className="min-h-screen bg-slate-900">
       {/* Header */}
-      <div className="sticky top-0 z-10 bg-slate-900/95 backdrop-blur-sm border-b border-slate-700/50 px-6 py-4 flex items-center justify-between">
+      <div style={{ marginLeft: '16px', marginRight: '16px' }} className="sticky top-0 z-10 bg-slate-900/95 backdrop-blur-sm border-b border-slate-700/50 py-4 flex items-center justify-between">
         <div>
           <p className="text-sm text-slate-400">
             21 Jan 2026, 12:00
@@ -148,7 +148,7 @@ export function EntryDetailScreen({
         </button>
       </div>
 
-      <div className="px-6 py-6 space-y-6 pb-24">
+      <div style={{ marginLeft: '16px', marginRight: '16px' }} className="py-6 space-y-6 pb-24">
         {/* Transcript */}
         <Card className="p-6">
           <div className="flex items-center justify-between mb-4">
@@ -403,7 +403,7 @@ export function EntryDetailScreen({
       </div>
 
       {/* Bottom Actions */}
-      <div className="fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-sm border-t border-slate-700/50 px-6 py-4">
+      <div style={{ marginLeft: '16px', marginRight: '16px' }} className="fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-sm border-t border-slate-700/50 py-4">
         <div className="flex items-center justify-between gap-3">
           <Button
             variant="ghost"
