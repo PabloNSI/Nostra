@@ -47,32 +47,32 @@ export function generateRecommendations(
     recommendations.push({
       id: 'rec_social_support',
       category: 'social',
-      title: 'Conecta con alguien cercano',
-      description: `Detectamos ${context.currentEmotion} elevada. Hablar con alguien de confianza puede ayudar.`,
+      title: 'Connect with someone close',
+      description: `We detected elevated ${context.currentEmotion}. Talking to someone you trust can help.`,
       icon: '👥',
       targetEmotion: context.currentEmotion,
       confidence: 85,
-      reason: `Porque ${context.currentEmotion} ha aumentado en los últimos días`,
+      reason: `Because ${context.currentEmotion} has increased in recent days`,
       actions: [
-        { label: 'Llamar a un amigo', type: 'external' },
-        { label: 'Escribir mensaje', type: 'external' }
+        { label: 'Call a friend', type: 'external' },
+        { label: 'Write a message', type: 'external' }
       ],
       priority: 'high',
-      bestTime: 'ahora'
+      bestTime: 'now'
     });
     
     // Physical activity
     recommendations.push({
       id: 'rec_exercise',
       category: 'activity',
-      title: 'Sal a caminar 15 minutos',
-      description: 'El ejercicio ligero puede mejorar tu estado de ánimo significativamente.',
+      title: 'Go for a 15-minute walk',
+      description: 'Light exercise can significantly improve your mood.',
       icon: '🚶',
       targetEmotion: context.currentEmotion,
       confidence: 78,
-      reason: 'El ejercicio aumenta endorfinas naturalmente',
+      reason: 'Exercise naturally increases endorphins',
       actions: [
-        { label: 'Comenzar caminata', type: 'internal', data: { activity: 'walk' } }
+        { label: 'Start walk', type: 'internal', data: { activity: 'walk' } }
       ],
       priority: 'high'
     });
@@ -83,18 +83,18 @@ export function generateRecommendations(
     recommendations.push({
       id: 'rec_rest',
       category: 'self-care',
-      title: 'Toma un descanso',
-      description: 'Tu cuerpo necesita recuperarse. Considera descansar o dormir una siesta corta.',
+      title: 'Take a break',
+      description: 'Your body needs to recover. Consider resting or taking a short nap.',
       icon: '😴',
       targetEmotion: 'fatigue',
       confidence: 90,
-      reason: 'Niveles altos de fatiga detectados',
+      reason: 'High fatigue levels detected',
       actions: [
-        { label: 'Programar descanso', type: 'internal' },
-        { label: 'Meditar 5 min', type: 'internal', data: { activity: 'meditation', duration: 5 } }
+        { label: 'Schedule rest', type: 'internal' },
+        { label: 'Meditate 5 min', type: 'internal', data: { activity: 'meditation', duration: 5 } }
       ],
       priority: 'high',
-      bestTime: 'ahora'
+      bestTime: 'now'
     });
   }
   
@@ -103,14 +103,14 @@ export function generateRecommendations(
     recommendations.push({
       id: 'rec_journal_gratitude',
       category: 'reflection',
-      title: 'Documenta este momento',
-      description: 'Estás experimentando emociones positivas. Escribir sobre ellas refuerza el bienestar.',
+      title: 'Document this moment',
+      description: 'You are experiencing positive emotions. Writing about them reinforces well-being.',
       icon: '📝',
       targetEmotion: 'joy',
       confidence: 75,
-      reason: 'Registrar momentos positivos mejora la memoria emocional',
+      reason: 'Recording positive moments improves emotional memory',
       actions: [
-        { label: 'Nueva entrada rápida', type: 'internal', data: { screen: 'quick-write' } }
+        { label: 'New quick entry', type: 'internal', data: { screen: 'quick-write' } }
       ],
       priority: 'medium'
     });
@@ -118,14 +118,14 @@ export function generateRecommendations(
     recommendations.push({
       id: 'rec_share_joy',
       category: 'social',
-      title: 'Comparte tu alegría',
-      description: 'Considera compartir este momento positivo con alguien cercano.',
+      title: 'Share your joy',
+      description: 'Consider sharing this positive moment with someone close.',
       icon: '🌟',
       targetEmotion: 'joy',
       confidence: 70,
-      reason: 'Compartir emociones positivas las amplifica',
+      reason: 'Sharing positive emotions amplifies them',
       actions: [
-        { label: 'Llamar amigo/familia', type: 'external' }
+        { label: 'Call friend/family', type: 'external' }
       ],
       priority: 'medium'
     });
@@ -136,38 +136,38 @@ export function generateRecommendations(
     recommendations.push({
       id: 'rec_habit_check',
       category: 'habit',
-      title: 'Revisa tus hábitos',
-      description: 'Tu estado emocional ha disminuido últimamente. Verificar sueño, ejercicio y alimentación puede ayudar.',
+      title: 'Check your habits',
+      description: 'Your emotional state has declined recently. Checking sleep, exercise, and nutrition can help.',
       icon: '📊',
       targetEmotion: context.currentEmotion,
       confidence: 68,
-      reason: 'Tendencia a la baja en estado emocional',
+      reason: 'Downward trend in emotional state',
       actions: [
-        { label: 'Ver dashboard hábitos', type: 'internal', data: { screen: 'habits' } },
-        { label: 'Actualizar registros', type: 'internal' }
+        { label: 'View habits dashboard', type: 'internal', data: { screen: 'habits' } },
+        { label: 'Update records', type: 'internal' }
       ],
       priority: 'medium'
     });
   }
   
   // Time-based recommendations
-  if (context.patterns.timeOfDay === 'noche' && 
-      ['fear', 'ansiedad'].includes(context.currentEmotion)) {
+  if (context.patterns.timeOfDay === 'night' && 
+      ['fear', 'anxiety'].includes(context.currentEmotion)) {
     recommendations.push({
       id: 'rec_sleep_routine',
       category: 'self-care',
-      title: 'Prepara tu rutina de sueño',
-      description: 'La ansiedad nocturna puede interferir con el descanso. Una rutina relajante ayuda.',
+      title: 'Prepare your sleep routine',
+      description: 'Nighttime anxiety can interfere with rest. A relaxing routine helps.',
       icon: '🌙',
       targetEmotion: context.currentEmotion,
       confidence: 82,
-      reason: 'Ansiedad detectada en horas nocturnas',
+      reason: 'Anxiety detected during nighttime hours',
       actions: [
-        { label: 'Meditación guiada', type: 'internal', data: { activity: 'meditation' } },
-        { label: 'Reducir pantallas', type: 'external' }
+        { label: 'Guided meditation', type: 'internal', data: { activity: 'meditation' } },
+        { label: 'Reduce screen time', type: 'external' }
       ],
       priority: 'high',
-      bestTime: 'antes de dormir'
+      bestTime: 'before sleeping'
     });
   }
   
@@ -176,15 +176,15 @@ export function generateRecommendations(
     recommendations.push({
       id: 'rec_mindfulness',
       category: 'meditation',
-      title: 'Práctica de mindfulness',
-      description: 'Tomar unos minutos para centrarte puede mejorar tu claridad mental.',
+      title: 'Mindfulness practice',
+      description: 'Taking a few minutes to center yourself can improve your mental clarity.',
       icon: '🧘',
       targetEmotion: 'neutral',
       confidence: 65,
-      reason: 'Práctica regular de mindfulness mejora bienestar general',
+      reason: 'Regular mindfulness practice improves overall well-being',
       actions: [
-        { label: 'Respiración 3 minutos', type: 'internal', data: { activity: 'breathing', duration: 3 } },
-        { label: 'Modo Zen', type: 'internal', data: { screen: 'zen' } }
+        { label: '3-minute breathing', type: 'internal', data: { activity: 'breathing', duration: 3 } },
+        { label: 'Zen Mode', type: 'internal', data: { screen: 'zen' } }
       ],
       priority: 'low'
     });
@@ -234,12 +234,12 @@ export function getActivitySuggestions(
   timeOfDay: string
 ): string[] {
   const suggestions: Record<string, string[]> = {
-    sadness: ['Salir a caminar', 'Llamar a un amigo', 'Escuchar música', 'Ver fotos felices'],
-    anger: ['Ejercicio intenso', 'Escribir libremente', 'Respiración profunda', 'Duchate con agua fría'],
-    fear: ['Hablar con alguien', 'Lista de preocupaciones', 'Técnica 5-4-3-2-1', 'Meditar'],
-    joy: ['Compartir con otros', 'Crear algo', 'Ayudar a alguien', 'Documentar el momento'],
-    fatigue: ['Descansar', 'Siesta corta (20min)', 'Hidratarte', 'Estiramientos suaves']
+    sadness: ['Go for a walk', 'Call a friend', 'Listen to music', 'Look at happy photos'],
+    anger: ['Intense exercise', 'Free writing', 'Deep breathing', 'Take a cold shower'],
+    fear: ['Talk to someone', 'List your worries', '5-4-3-2-1 technique', 'Meditate'],
+    joy: ['Share with others', 'Create something', 'Help someone', 'Document the moment'],
+    fatigue: ['Rest', 'Short nap (20min)', 'Hydrate', 'Gentle stretches']
   };
   
-  return suggestions[emotion] || ['Tomar agua', 'Respirar profundo', 'Estirarse'];
+  return suggestions[emotion] || ['Drink water', 'Take deep breaths', 'Stretch'];
 }

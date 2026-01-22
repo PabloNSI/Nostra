@@ -20,15 +20,15 @@ export function LoginScreen({ onUnlock }: LoginScreenProps) {
     const newErrors: typeof errors = {};
     
     if (!username.trim()) {
-      newErrors.username = "Usuario requerido";
+      newErrors.username = "Username required";
     } else if (username.length < 3) {
-      newErrors.username = "Mínimo 3 caracteres";
+      newErrors.username = "Minimum 3 characters";
     }
     
     if (!password) {
-      newErrors.password = "Contraseña requerida";
+      newErrors.password = "Password required";
     } else if (password.length < 8) {
-      newErrors.password = "Mínimo 8 caracteres";
+      newErrors.password = "Minimum 8 characters";
     }
     
     setErrors(newErrors);
@@ -66,7 +66,7 @@ export function LoginScreen({ onUnlock }: LoginScreenProps) {
           </div>
           <h1 className="text-slate-200 mb-2">NOSTRA</h1>
           <p className="text-slate-400">
-            Tu memoria emocional externa
+            Your external emotional memory
           </p>
         </div>
 
@@ -78,13 +78,13 @@ export function LoginScreen({ onUnlock }: LoginScreenProps) {
               htmlFor="username"
               className="block text-sm font-medium text-slate-300 mb-2"
             >
-              Usuario
+              Username
             </label>
             <div className="input-wrapper">
               <input
                 id="username"
                 type="text"
-                placeholder="tu@email.com o usuario"
+                placeholder="your@email.com or username"
                 value={username}
                 onChange={(e) => {
                   setUsername(e.target.value);
@@ -93,7 +93,7 @@ export function LoginScreen({ onUnlock }: LoginScreenProps) {
                   }
                 }}
                 disabled={isLoading}
-                aria-label="Usuario o Email"
+                aria-label="Username or Email"
                 aria-describedby={errors.username ? "username-error" : undefined}
                 aria-invalid={!!errors.username}
                 className={`
@@ -127,13 +127,13 @@ export function LoginScreen({ onUnlock }: LoginScreenProps) {
               htmlFor="password"
               className="block text-sm font-medium text-slate-300 mb-2"
             >
-              Contraseña
+              Password
             </label>
             <div className="password-wrapper relative">
               <input
                 id="password"
                 type={showPassword ? "text" : "password"}
-                placeholder="Ingresa tu contraseña"
+                placeholder="Enter your password"
                 value={password}
                 onChange={(e) => {
                   setPassword(e.target.value);
@@ -142,7 +142,7 @@ export function LoginScreen({ onUnlock }: LoginScreenProps) {
                   }
                 }}
                 disabled={isLoading}
-                aria-label="Contraseña"
+                aria-label="Password"
                 aria-describedby={errors.password ? "password-error" : undefined}
                 aria-invalid={!!errors.password}
                 className={`
@@ -159,7 +159,7 @@ export function LoginScreen({ onUnlock }: LoginScreenProps) {
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
                 disabled={isLoading}
-                aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+                aria-label={showPassword ? "Hide password" : "Show password"}
                 aria-pressed={showPassword}
                 aria-controls="password"
                 className="
@@ -199,7 +199,7 @@ export function LoginScreen({ onUnlock }: LoginScreenProps) {
               type="button"
               onClick={handleBiometric}
               disabled={isLoading}
-              aria-label="Desbloquear con biometría"
+              aria-label="Unlock with biometrics"
               className="
                 biometric-btn
                 flex items-center gap-3
@@ -218,17 +218,17 @@ export function LoginScreen({ onUnlock }: LoginScreenProps) {
                     className="spinner inline-block w-5 h-5 border-2 border-indigo-400/30 border-t-indigo-400 rounded-full animate-spin"
                     aria-hidden="true"
                   ></span>
-                  Escaneando...
+                  Scanning...
                 </>
               ) : (
                 <>
                   <Fingerprint className="w-6 h-6" />
-                  Usar biometría
+                  Use biometrics
                 </>
               )}
             </button>
             <p className="biometric-hint text-xs text-slate-500 text-center">
-              Huella digital o reconocimiento facial
+              Fingerprint or facial recognition
             </p>
           </div>
 
@@ -240,7 +240,7 @@ export function LoginScreen({ onUnlock }: LoginScreenProps) {
             disabled={isLoading}
             aria-busy={isLoading}
           >
-            {isLoading ? "Desbloqueando..." : "Desbloquear"}
+            {isLoading ? "Unlocking..." : "Unlock"}
           </Button>
 
           {/* Access Options Link */}
@@ -249,7 +249,7 @@ export function LoginScreen({ onUnlock }: LoginScreenProps) {
               type="button"
               className="text-sm text-slate-500 hover:text-indigo-400 transition-colors duration-150 focus:outline-none focus:underline"
             >
-              Opciones de acceso
+              Access options
             </button>
           </div>
         </form>
@@ -258,7 +258,7 @@ export function LoginScreen({ onUnlock }: LoginScreenProps) {
         <div className="mt-8 text-center px-8">
           <p className="text-xs text-slate-500 flex items-center justify-center gap-2">
             <span aria-hidden="true">🔒</span>
-            <span>Tus datos están cifrados localmente</span>
+            <span>Your data is locally encrypted</span>
           </p>
         </div>
       </div>

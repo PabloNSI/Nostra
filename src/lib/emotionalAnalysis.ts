@@ -16,24 +16,24 @@ export interface EmotionalAnalysis {
     subjectivity: number; // 0-1 (0 = objective, 1 = subjective)
     emotionalValence: number; // -1 to 1 (negative to positive)
   };
-  keywords: string[]; // palabras clave detectadas
+  keywords: string[]; // detected keywords
   timestamp: Date;
 }
 
 // Emotion keywords dictionary (expandable)
 const emotionKeywords = {
-  joy: ['feliz', 'alegre', 'contento', 'genial', 'excelente', 'maravilloso', 'fantástico', 'bien', 'mejor', 'éxito', 'logro', 'celebrar'],
-  sadness: ['triste', 'solo', 'melancolía', 'deprimido', 'mal', 'peor', 'llorar', 'pena', 'dolor', 'perdida', 'ausencia'],
-  anger: ['enfado', 'enojado', 'furioso', 'molesto', 'irritado', 'rabia', 'ira', 'frustrado', 'odio', 'injusto'],
-  fear: ['miedo', 'asustado', 'temor', 'ansiedad', 'nervioso', 'preocupado', 'pánico', 'terror', 'inseguro'],
-  surprise: ['sorprendido', 'inesperado', 'asombro', 'increíble', 'wow', 'no esperaba', 'impactante', 'sorpresa'],
-  fatigue: ['cansado', 'agotado', 'exhausto', 'fatigado', 'sueño', 'débil', 'sin energía', 'rendido'],
-  disgust: ['asco', 'repugnante', 'desagradable', 'horrible', 'repulsivo', 'nauseabundo', 'asqueroso']
+  joy: ['happy', 'joyful', 'content', 'great', 'excellent', 'wonderful', 'fantastic', 'good', 'better', 'success', 'achievement', 'celebrate'],
+  sadness: ['sad', 'lonely', 'melancholy', 'depressed', 'bad', 'worse', 'cry', 'sorrow', 'pain', 'loss', 'absence'],
+  anger: ['angry', 'mad', 'furious', 'annoyed', 'irritated', 'rage', 'wrath', 'frustrated', 'hate', 'unfair'],
+  fear: ['fear', 'scared', 'dread', 'anxiety', 'nervous', 'worried', 'panic', 'terror', 'insecure'],
+  surprise: ['surprised', 'unexpected', 'amazement', 'incredible', 'wow', "didn't expect", 'shocking', 'surprise'],
+  fatigue: ['tired', 'exhausted', 'drained', 'fatigued', 'sleepy', 'weak', 'no energy', 'defeated'],
+  disgust: ['disgust', 'disgusting', 'unpleasant', 'horrible', 'repulsive', 'nauseating', 'gross']
 };
 
 // Intensifiers and negations
-const intensifiers = ['muy', 'bastante', 'extremadamente', 'súper', 'totalmente', 'realmente', 'increíblemente'];
-const negations = ['no', 'nunca', 'jamás', 'sin', 'ningún', 'ninguna', 'tampoco'];
+const intensifiers = ['very', 'quite', 'extremely', 'super', 'totally', 'really', 'incredibly'];
+const negations = ['no', 'never', 'not', 'without', 'no one', 'none', 'neither'];
 
 export function analyzeText(text: string): EmotionalAnalysis {
   const normalizedText = text.toLowerCase();
@@ -150,7 +150,7 @@ function detectCompositeEmotions(scores: Record<string, number>) {
   // Hope = joy + surprise
   if (scores.joy > 0 && scores.surprise > 0) {
     composites.push({
-      emotion: 'esperanza',
+      emotion: 'hope',
       components: ['joy', 'surprise'],
       intensity: Math.round((scores.joy + scores.surprise) / 2)
     });
@@ -159,7 +159,7 @@ function detectCompositeEmotions(scores: Record<string, number>) {
   // Anxiety = fear + surprise
   if (scores.fear > 0 && scores.surprise > 0) {
     composites.push({
-      emotion: 'ansiedad',
+      emotion: 'anxiety',
       components: ['fear', 'surprise'],
       intensity: Math.round((scores.fear + scores.surprise) / 2)
     });
@@ -175,10 +175,10 @@ export function extractKeywords(text: string, maxKeywords: number = 10): string[
     .split(/\s+/)
     .filter(word => word.length > 3);
   
-  // Common Spanish stopwords
-  const stopwords = ['este', 'esta', 'estos', 'estas', 'para', 'pero', 'porque', 
-                     'como', 'como', 'cuando', 'donde', 'quien', 'cual', 'sobre',
-                     'también', 'todo', 'todos', 'muy', 'más', 'menos'];
+  // Common English stopwords
+  const stopwords = ['this', 'that', 'these', 'those', 'for', 'but', 'because', 
+                     'as', 'when', 'where', 'who', 'which', 'about',
+                     'also', 'all', 'very', 'more', 'less'];
   
   const filtered = words.filter(word => !stopwords.includes(word));
   

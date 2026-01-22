@@ -16,25 +16,25 @@ export function GraphScreen({ activeTab, onTabChange }: GraphScreenProps) {
   
   // Mock graph nodes
   const nodes = [
-    { id: 'trabajo', label: 'Trabajo', type: 'concept', size: 80, x: 200, y: 150, color: 'bg-indigo-500', frequency: 45 },
-    { id: 'familia', label: 'Familia', type: 'person', size: 70, x: 400, y: 120, color: 'bg-pink-500', frequency: 38 },
-    { id: 'alegria', label: 'Alegría', type: 'emotion', size: 90, x: 300, y: 300, color: 'bg-amber-400', frequency: 52 },
-    { id: 'proyecto', label: 'Proyecto', type: 'concept', size: 60, x: 150, y: 280, color: 'bg-purple-500', frequency: 28 },
-    { id: 'ejercicio', label: 'Ejercicio', type: 'activity', size: 55, x: 450, y: 250, color: 'bg-green-500', frequency: 22 },
-    { id: 'amigos', label: 'Amigos', type: 'person', size: 65, x: 350, y: 180, color: 'bg-pink-500', frequency: 31 }
+    { id: 'work', label: 'Work', type: 'concept', size: 80, x: 200, y: 150, color: 'bg-indigo-500', frequency: 45 },
+    { id: 'family', label: 'Family', type: 'person', size: 70, x: 400, y: 120, color: 'bg-pink-500', frequency: 38 },
+    { id: 'joy', label: 'Joy', type: 'emotion', size: 90, x: 300, y: 300, color: 'bg-amber-400', frequency: 52 },
+    { id: 'project', label: 'Project', type: 'concept', size: 60, x: 150, y: 280, color: 'bg-purple-500', frequency: 28 },
+    { id: 'exercise', label: 'Exercise', type: 'activity', size: 55, x: 450, y: 250, color: 'bg-green-500', frequency: 22 },
+    { id: 'friends', label: 'Friends', type: 'person', size: 65, x: 350, y: 180, color: 'bg-pink-500', frequency: 31 }
   ];
   
   const edges = [
-    { from: 'trabajo', to: 'proyecto' },
-    { from: 'trabajo', to: 'alegria' },
-    { from: 'familia', to: 'alegria' },
-    { from: 'amigos', to: 'alegria' },
-    { from: 'ejercicio', to: 'alegria' }
+    { from: 'work', to: 'project' },
+    { from: 'work', to: 'joy' },
+    { from: 'family', to: 'joy' },
+    { from: 'friends', to: 'joy' },
+    { from: 'exercise', to: 'joy' }
   ];
   
   return (
     <div className="min-h-screen bg-slate-900 pb-20">
-      <Header title="Grafo Cognitivo" />
+      <Header title="Cognitive Graph" />
       
       <main className="px-6 py-6 space-y-6">
         {/* Controls */}
@@ -42,20 +42,20 @@ export function GraphScreen({ activeTab, onTabChange }: GraphScreenProps) {
           <div className="flex gap-2">
             <Button variant="ghost" size="sm">
               <Filter className="w-4 h-4 mr-2" />
-              Filtros
+              Filters
             </Button>
           </div>
           <div className="flex gap-2">
-            <button className="p-2 hover:bg-slate-700 rounded-lg transition-colors" aria-label="Acercar">
+            <button className="p-2 hover:bg-slate-700 rounded-lg transition-colors" aria-label="Zoom in">
               <ZoomIn className="w-5 h-5" />
             </button>
-            <button className="p-2 hover:bg-slate-700 rounded-lg transition-colors" aria-label="Alejar">
+            <button className="p-2 hover:bg-slate-700 rounded-lg transition-colors" aria-label="Zoom out">
               <ZoomOut className="w-5 h-5" />
             </button>
-            <button className="p-2 hover:bg-slate-700 rounded-lg transition-colors" aria-label="Ajustar a pantalla">
+            <button className="p-2 hover:bg-slate-700 rounded-lg transition-colors" aria-label="Fit to screen">
               <Maximize2 className="w-5 h-5" />
             </button>
-            <button className="p-2 hover:bg-slate-700 rounded-lg transition-colors" aria-label="Exportar">
+            <button className="p-2 hover:bg-slate-700 rounded-lg transition-colors" aria-label="Export">
               <Download className="w-5 h-5" />
             </button>
           </div>
@@ -118,7 +118,7 @@ export function GraphScreen({ activeTab, onTabChange }: GraphScreenProps) {
           {/* Hint */}
           {!selectedNode && (
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <p className="text-slate-500 text-sm">Haz clic en un nodo para ver detalles</p>
+              <p className="text-slate-500 text-sm">Click on a node to see details</p>
             </div>
           )}
         </Card>
@@ -140,12 +140,12 @@ export function GraphScreen({ activeTab, onTabChange }: GraphScreenProps) {
                         <p className="text-sm text-slate-400 capitalize">{node.type}</p>
                       </div>
                     </div>
-                    <Badge>Frecuencia: {node.frequency}</Badge>
+                    <Badge>Frequency: {node.frequency}</Badge>
                   </div>
                   
                   <div className="space-y-4">
                     <div>
-                      <p className="text-sm text-slate-400 mb-2">Conexiones</p>
+                      <p className="text-sm text-slate-400 mb-2">Connections</p>
                       <div className="flex flex-wrap gap-2">
                         {edges
                           .filter(e => e.from === selectedNode || e.to === selectedNode)
@@ -160,9 +160,9 @@ export function GraphScreen({ activeTab, onTabChange }: GraphScreenProps) {
                     </div>
                     
                     <div>
-                      <p className="text-sm text-slate-400 mb-2">Entradas relacionadas</p>
+                      <p className="text-sm text-slate-400 mb-2">Related entries</p>
                       <p className="text-sm text-slate-300">
-                        Este concepto aparece en {node.frequency} entradas desde el último mes.
+                        This concept appears in {node.frequency} entries since last month.
                       </p>
                     </div>
                   </div>
@@ -174,27 +174,27 @@ export function GraphScreen({ activeTab, onTabChange }: GraphScreenProps) {
         
         {/* Legend */}
         <Card className="p-6">
-          <h3 className="text-slate-300 mb-4">Tipos de nodos</h3>
+          <h3 className="text-slate-300 mb-4">Node types</h3>
           <div className="grid grid-cols-2 gap-3">
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded-full bg-indigo-500" />
-              <span className="text-sm text-slate-400">Concepto</span>
+              <span className="text-sm text-slate-400">Concept</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded-full bg-amber-400" />
-              <span className="text-sm text-slate-400">Emoción</span>
+              <span className="text-sm text-slate-400">Emotion</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded-full bg-pink-500" />
-              <span className="text-sm text-slate-400">Persona</span>
+              <span className="text-sm text-slate-400">Person</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded-full bg-green-500" />
-              <span className="text-sm text-slate-400">Actividad</span>
+              <span className="text-sm text-slate-400">Activity</span>
             </div>
           </div>
           <p className="text-sm text-slate-400 mt-4">
-            El tamaño de los nodos representa la frecuencia de aparición
+            Node size represents appearance frequency
           </p>
         </Card>
       </main>

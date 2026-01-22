@@ -4,13 +4,13 @@ export interface CognitiveGraphNode {
   type: 'concept' | 'emotion' | 'person' | 'activity' | 'location' | 'event';
   label: string;
   emoji?: string;
-  color: string; // mapeo automático por tipo
-  frequency: number; // veces mencionado
+  color: string; // automatic mapping by type
+  frequency: number; // times mentioned
   firstAppearance: Date;
   lastAppearance: Date;
-  emotionalWeight: number; // -1 (negativo) a 1 (positivo)
+  emotionalWeight: number; // -1 (negative) to 1 (positive)
   metadata: {
-    sentiment?: number; // -1 a 1
+    sentiment?: number; // -1 to 1
     relatedEmotions?: string[];
     intensity?: number;
   };
@@ -20,10 +20,10 @@ export interface CognitiveGraphEdge {
   id: string;
   source: string;
   target: string;
-  weight: number; // 0-1, fuerza de relación
-  cooccurrences: number; // veces aparecen juntas
-  temporalDistance: number; // días entre apariciones
-  emotionalConsistency: number; // -1 a 1
+  weight: number; // 0-1, relationship strength
+  cooccurrences: number; // times appear together
+  temporalDistance: number; // days between appearances
+  emotionalConsistency: number; // -1 to 1
   type: 'correlation' | 'causation' | 'association';
 }
 
@@ -38,12 +38,12 @@ export function extractEntities(text: string): {
   
   // Simple pattern matching (in production, use NER library like compromise)
   const patterns = {
-    activities: ['correr', 'nadar', 'caminar', 'trabajar', 'estudiar', 'leer', 
-                 'cocinar', 'ejercicio', 'yoga', 'meditar', 'reunión', 'proyecto'],
-    locations: ['casa', 'oficina', 'café', 'parque', 'gym', 'playa', 
-                'ciudad', 'campo', 'montaña'],
-    concepts: ['trabajo', 'familia', 'salud', 'dinero', 'tiempo', 'libertad',
-               'amor', 'éxito', 'fracaso', 'meta', 'sueño', 'esperanza']
+    activities: ['run', 'swim', 'walk', 'work', 'study', 'read', 
+                 'cook', 'exercise', 'yoga', 'meditate', 'meeting', 'project'],
+    locations: ['home', 'office', 'café', 'park', 'gym', 'beach', 
+                'city', 'countryside', 'mountain'],
+    concepts: ['work', 'family', 'health', 'money', 'time', 'freedom',
+               'love', 'success', 'failure', 'goal', 'dream', 'hope']
   };
   
   const detected = {
@@ -254,8 +254,8 @@ function getEmotionEmoji(emotion: string): string {
     fatigue: '😴',
     disgust: '🤢',
     nostalgia: '🥺',
-    esperanza: '🌟',
-    ansiedad: '😰'
+    hope: '🌟',
+    anxiety: '😰'
   };
   return emojiMap[emotion.toLowerCase()] || '❓';
 }
@@ -270,8 +270,8 @@ function getEmotionValence(emotion: string): number {
     fatigue: -0.4,
     disgust: -0.5,
     nostalgia: 0,
-    esperanza: 0.8,
-    ansiedad: -0.6
+    hope: 0.8,
+    anxiety: -0.6
   };
   return valenceMap[emotion.toLowerCase()] || 0;
 }

@@ -1,13 +1,13 @@
 // Prosody Analysis Engine - Voice Metrics
 export interface ProsodyMetrics {
   pitch: {
-    current: number; // Hz (100-400 típico)
-    baseline: number; // promedio del usuario
-    variation: number; // desv. estándar
+    current: number; // Hz (100-400 typical)
+    baseline: number; // user average
+    variation: number; // standard deviation
     trend: 'rising' | 'falling' | 'stable';
   };
   energy: {
-    current: number; // dB (0-100 normalizado)
+    current: number; // dB (0-100 normalized)
     baseline: number;
     intensity: 'low' | 'medium' | 'high';
   };
@@ -18,13 +18,13 @@ export interface ProsodyMetrics {
     interpretation: 'slow' | 'normal' | 'fast';
   };
   pauseRatio: {
-    value: number; // 0-1 (proporción de silencios)
+    value: number; // 0-1 (proportion of silences)
     interpretation: 'thoughtful' | 'natural' | 'rushed';
   };
   voiceQuality: {
-    jitter: number; // variación pitch (% de frecuencia fundamental)
-    shimmer: number; // variación amplitud (%)
-    harmonicRatio: number; // 0-1 (claridad de voz)
+    jitter: number; // pitch variation (% of fundamental frequency)
+    shimmer: number; // amplitude variation (%)
+    harmonicRatio: number; // 0-1 (voice clarity)
   };
 }
 
@@ -99,11 +99,11 @@ export function interpretProsodyEmotion(metrics: ProsodyMetrics): {
     if (metrics.speechRate.interpretation === 'fast') {
       suggestedEmotion = 'joy';
       confidence = 75;
-      reasoning = 'Tono elevado, alta energía y habla rápida sugieren alegría o entusiasmo';
+      reasoning = 'High pitch, high energy and fast speech suggest joy or enthusiasm';
     } else {
       suggestedEmotion = 'anger';
       confidence = 70;
-      reasoning = 'Tono elevado con alta energía sugiere enfado o frustración';
+      reasoning = 'High pitch with high energy suggests anger or frustration';
     }
   }
   
@@ -112,11 +112,11 @@ export function interpretProsodyEmotion(metrics: ProsodyMetrics): {
     if (metrics.pauseRatio.interpretation === 'thoughtful') {
       suggestedEmotion = 'sadness';
       confidence = 72;
-      reasoning = 'Tono bajo, baja energía y pausas largas sugieren tristeza';
+      reasoning = 'Low pitch, low energy and long pauses suggest sadness';
     } else {
       suggestedEmotion = 'fatigue';
       confidence = 68;
-      reasoning = 'Tono bajo y baja energía sugieren fatiga o cansancio';
+      reasoning = 'Low pitch and low energy suggest fatigue or tiredness';
     }
   }
   
@@ -124,14 +124,14 @@ export function interpretProsodyEmotion(metrics: ProsodyMetrics): {
   else if (metrics.speechRate.interpretation === 'fast' && metrics.pauseRatio.value > 0.25) {
     suggestedEmotion = 'fear';
     confidence = 65;
-    reasoning = 'Habla rápida con pausas frecuentes sugiere nerviosismo o ansiedad';
+    reasoning = 'Fast speech with frequent pauses suggests nervousness or anxiety';
   }
   
   // Variable pitch + medium energy = surprise
   else if (metrics.pitch.variation > 30 && metrics.energy.intensity === 'medium') {
     suggestedEmotion = 'surprise';
     confidence = 60;
-    reasoning = 'Variaciones de tono sugieren sorpresa o asombro';
+    reasoning = 'Pitch variations suggest surprise or amazement';
   }
   
   return {

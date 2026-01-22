@@ -58,20 +58,20 @@ export function generateBlackBoxAnalysis(
   
   // Detect negations and intensifiers
   const negations = words.filter(w => 
-    ['no', 'nunca', 'jamás', 'sin', 'ningún'].includes(w)
+    ['no', 'never', 'not', 'without', 'none', 'no one', 'nothing'].includes(w)
   );
   
   const intensifiers = words.filter(w => 
-    ['muy', 'bastante', 'extremadamente', 'súper', 'totalmente'].includes(w)
+    ['very', 'quite', 'extremely', 'super', 'totally', 'really', 'so'].includes(w)
   );
   
   // Contextual factors
   const hour = timestamp.getHours();
-  const timeOfDay = hour < 12 ? 'mañana' 
-                  : hour < 18 ? 'tarde' 
-                  : 'noche';
+  const timeOfDay = hour < 12 ? 'morning' 
+                  : hour < 18 ? 'afternoon' 
+                  : 'night';
   
-  const dayNames = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+  const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   const dayOfWeek = dayNames[timestamp.getDay()];
   
   // Build decision path
@@ -117,13 +117,13 @@ function detectEmotionalWords(text: string): Array<{
   weight: number;
 }> {
   const emotionKeywords = {
-    joy: ['feliz', 'alegre', 'contento', 'genial', 'excelente', 'bien'],
-    sadness: ['triste', 'solo', 'mal', 'llorar', 'pena'],
-    anger: ['enfado', 'enojado', 'molesto', 'irritado', 'rabia'],
-    fear: ['miedo', 'asustado', 'nervioso', 'preocupado'],
-    surprise: ['sorprendido', 'inesperado', 'wow'],
-    fatigue: ['cansado', 'agotado', 'sueño'],
-    disgust: ['asco', 'repugnante', 'horrible']
+    joy: ['happy', 'joyful', 'content', 'great', 'excellent', 'good', 'nice'],
+    sadness: ['sad', 'lonely', 'bad', 'cry', 'sorrow', 'unhappy'],
+    anger: ['angry', 'mad', 'annoyed', 'irritated', 'rage', 'furious'],
+    fear: ['fear', 'scared', 'nervous', 'worried', 'afraid'],
+    surprise: ['surprised', 'unexpected', 'wow', 'amazing'],
+    fatigue: ['tired', 'exhausted', 'sleepy', 'fatigued'],
+    disgust: ['disgust', 'disgusting', 'horrible', 'awful']
   };
   
   const words = text.toLowerCase().split(/\s+/);
@@ -159,7 +159,7 @@ function buildDecisionPath(
   const textContribution = 40;
   path.push({
     step: 1,
-    rule: 'Análisis de palabras emocionales en el texto',
+    rule: 'Analysis of emotional words in text',
     value: emotionalWords.length,
     contribution: textContribution
   });
@@ -169,7 +169,7 @@ function buildDecisionPath(
   if (negationCount > 0 || intensifierCount > 0) {
     path.push({
       step: 2,
-      rule: `Modificadores detectados (${negationCount} negaciones, ${intensifierCount} intensificadores)`,
+      rule: `Modifiers detected (${negationCount} negations, ${intensifierCount} intensifiers)`,
       value: negationCount + intensifierCount,
       contribution: modifierContribution
     });
@@ -180,7 +180,7 @@ function buildDecisionPath(
     const prosodyContribution = 30;
     path.push({
       step: 3,
-      rule: `Análisis prosódico: pitch ${prosodyMetrics.pitch.trend}, energía ${prosodyMetrics.energy.intensity}`,
+      rule: `Prosodic analysis: pitch ${prosodyMetrics.pitch.trend}, energy ${prosodyMetrics.energy.intensity}`,
       value: prosodyMetrics.energy.current,
       contribution: prosodyContribution
     });
@@ -189,7 +189,7 @@ function buildDecisionPath(
   // Step 4: Confidence calculation
   path.push({
     step: path.length + 1,
-    rule: 'Cálculo de confianza basado en múltiples factores',
+    rule: 'Confidence calculation based on multiple factors',
     value: analysis.confidence,
     contribution: 100 - path.reduce((sum, p) => sum + p.contribution, 0)
   });
@@ -201,21 +201,21 @@ function interpretProsody(metrics: ProsodyMetrics): string {
   const parts = [];
   
   if (metrics.pitch.trend === 'rising') {
-    parts.push('tono ascendente sugiere excitación o entusiasmo');
+    parts.push('rising pitch suggests excitement or enthusiasm');
   } else if (metrics.pitch.trend === 'falling') {
-    parts.push('tono descendente sugiere calma o tristeza');
+    parts.push('falling pitch suggests calmness or sadness');
   }
   
   if (metrics.energy.intensity === 'high') {
-    parts.push('alta energía indica emoción intensa');
+    parts.push('high energy indicates intense emotion');
   } else if (metrics.energy.intensity === 'low') {
-    parts.push('baja energía sugiere fatiga o calma');
+    parts.push('low energy suggests fatigue or calmness');
   }
   
   if (metrics.speechRate.interpretation === 'fast') {
-    parts.push('habla rápida puede indicar nerviosismo o entusiasmo');
+    parts.push('fast speech may indicate nervousness or enthusiasm');
   } else if (metrics.speechRate.interpretation === 'slow') {
-    parts.push('habla lenta sugiere reflexión o tristeza');
+    parts.push('slow speech suggests reflection or sadness');
   }
   
   return parts.join(', ');

@@ -21,9 +21,9 @@ interface ImportFile {
 
 export function ImportsScreen({ activeTab, onTabChange }: ImportsScreenProps) {
   const [files, setFiles] = useState<ImportFile[]>([
-    { id: '1', name: 'foto_playa_2024.jpg', type: 'image', status: 'success', progress: 100 },
-    { id: '2', name: 'nota_voz_trabajo.mp3', type: 'audio', status: 'processing', progress: 65 },
-    { id: '3', name: 'documento_importante.pdf', type: 'document', status: 'pending', progress: 0 }
+    { id: '1', name: 'beach_photo_2024.jpg', type: 'image', status: 'success', progress: 100 },
+    { id: '2', name: 'work_voice_note.mp3', type: 'audio', status: 'processing', progress: 65 },
+    { id: '3', name: 'important_document.pdf', type: 'document', status: 'pending', progress: 0 }
   ]);
   
   const [autoAnalyze, setAutoAnalyze] = useState(true);
@@ -52,24 +52,24 @@ export function ImportsScreen({ activeTab, onTabChange }: ImportsScreenProps) {
   
   return (
     <div className="min-h-screen bg-slate-900 pb-20">
-      <Header title="Importar recuerdos" />
+      <Header title="Import memories" />
       
       <main className="px-6 py-6 space-y-6">
         {/* Upload Zone */}
         <Card className="p-8">
           <div className="border-2 border-dashed border-slate-600 rounded-xl p-12 text-center hover:border-indigo-500 transition-colors cursor-pointer">
             <Upload className="w-12 h-12 mx-auto mb-4 text-slate-400" />
-            <h3 className="text-slate-300 mb-2">Arrastra archivos aquí</h3>
+            <h3 className="text-slate-300 mb-2">Drag files here</h3>
             <p className="text-sm text-slate-400 mb-4">
-              o haz clic para seleccionar
+              or click to select
             </p>
             <Button variant="ghost" size="sm">
-              Explorar archivos
+              Browse files
             </Button>
           </div>
           
           <div className="mt-4 space-y-2">
-            <p className="text-sm text-slate-400">Formatos soportados:</p>
+            <p className="text-sm text-slate-400">Supported formats:</p>
             <div className="flex flex-wrap gap-2">
               <Badge>JPG</Badge>
               <Badge>PNG</Badge>
@@ -78,7 +78,7 @@ export function ImportsScreen({ activeTab, onTabChange }: ImportsScreenProps) {
               <Badge>PDF</Badge>
               <Badge>TXT</Badge>
             </div>
-            <p className="text-xs text-slate-500">Tamaño máximo: 50MB por archivo</p>
+            <p className="text-xs text-slate-500">Maximum size: 50MB per file</p>
           </div>
         </Card>
         
@@ -87,16 +87,16 @@ export function ImportsScreen({ activeTab, onTabChange }: ImportsScreenProps) {
           <>
             <Card className="p-6">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-slate-300">Cola de importación</h3>
+                <h3 className="text-slate-300">Import queue</h3>
                 <span className="text-sm text-slate-400">
-                  {files.filter(f => f.status === 'success').length} / {files.length} completados
+                  {files.filter(f => f.status === 'success').length} / {files.length} completed
                 </span>
               </div>
               
               {/* Global Progress */}
               <div className="mb-4">
                 <div className="flex items-center justify-between text-sm text-slate-400 mb-2">
-                  <span>Progreso total</span>
+                  <span>Total progress</span>
                   <span>{totalProgress}%</span>
                 </div>
                 <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
@@ -133,7 +133,7 @@ export function ImportsScreen({ activeTab, onTabChange }: ImportsScreenProps) {
                     </div>
                     {file.status === 'pending' && (
                       <button className="text-sm text-red-400 hover:text-red-300">
-                        Excluir
+                        Exclude
                       </button>
                     )}
                   </div>
@@ -145,9 +145,9 @@ export function ImportsScreen({ activeTab, onTabChange }: ImportsScreenProps) {
             <Card className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-slate-300 mb-1">Analizar automáticamente</h3>
+                  <h3 className="text-slate-300 mb-1">Automatic analysis</h3>
                   <p className="text-sm text-slate-400">
-                    Detectar emociones y extraer conceptos de los archivos importados
+                    Detect emotions and extract concepts from imported files
                   </p>
                 </div>
                 <input
@@ -161,7 +161,7 @@ export function ImportsScreen({ activeTab, onTabChange }: ImportsScreenProps) {
             
             {/* Action Button */}
             <Button className="w-full" size="lg">
-              Comenzar importación
+              Start import
             </Button>
           </>
         )}
@@ -171,7 +171,7 @@ export function ImportsScreen({ activeTab, onTabChange }: ImportsScreenProps) {
           <Card className="p-12 text-center">
             <File className="w-16 h-16 mx-auto mb-4 text-slate-600" />
             <p className="text-slate-400">
-              No hay archivos en la cola de importación
+              No files in the import queue
             </p>
           </Card>
         )}

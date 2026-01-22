@@ -16,9 +16,9 @@ export function HomeScreen({ userName, onNavigate, activeTab, onTabChange }: Hom
   const [feedbackGiven, setFeedbackGiven] = React.useState<Record<string, boolean>>({});
   
   const recentEntries = [
-    { id: 1, date: 'Hoy, 14:30', emotion: 'joy' as const, snippet: 'Gran reunión con el equipo, todo salió mejor de lo esperado...' },
-    { id: 2, date: 'Ayer, 20:15', emotion: 'sadness' as const, snippet: 'Me siento un poco abrumado con todo el trabajo...' },
-    { id: 3, date: 'Hace 2 días', emotion: 'surprise' as const, snippet: 'No esperaba esa llamada de mi amigo de la universidad...' }
+    { id: 1, date: 'Today, 14:30', emotion: 'joy' as const, snippet: 'Great meeting with the team, everything went better than expected...' },
+    { id: 2, date: 'Yesterday, 20:15', emotion: 'sadness' as const, snippet: 'Feeling a bit overwhelmed with all the work...' },
+    { id: 3, date: '2 days ago', emotion: 'surprise' as const, snippet: "Didn't expect that call from my college friend..." }
   ];
   
   // Personalized recommendations
@@ -26,24 +26,24 @@ export function HomeScreen({ userName, onNavigate, activeTab, onTabChange }: Hom
     {
       id: 'rec_1',
       icon: '🚶',
-      title: 'Sal a caminar 15 minutos',
-      description: 'El ejercicio ligero puede mejorar tu estado de ánimo',
+      title: 'Go for a 15-minute walk',
+      description: 'Light exercise can improve your mood',
       priority: 'high' as const,
       category: 'activity'
     },
     {
       id: 'rec_2',
       icon: '😴',
-      title: 'Mejora tu rutina de sueño',
-      description: 'Has dormido menos esta semana. Intenta acostarte 30 min antes',
+      title: 'Improve your sleep routine',
+      description: 'You slept less this week. Try going to bed 30 min earlier',
       priority: 'high' as const,
       category: 'habit'
     },
     {
       id: 'rec_3',
       icon: '📝',
-      title: 'Documenta este momento positivo',
-      description: 'Escribir sobre momentos felices refuerza el bienestar',
+      title: 'Document this positive moment',
+      description: 'Writing about happy moments reinforces well-being',
       priority: 'medium' as const,
       category: 'reflection'
     }
@@ -61,15 +61,15 @@ export function HomeScreen({ userName, onNavigate, activeTab, onTabChange }: Hom
         {/* Today's Emotion Card */}
         <Card variant="elevated" className="p-6">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-slate-300">Hoy</h3>
-            <span className="text-sm text-slate-400">11 Dic 2025</span>
+            <h3 className="text-slate-300">Today</h3>
+            <span className="text-sm text-slate-400">Dec 11, 2025</span>
           </div>
           <div className="flex items-center gap-4">
             <div className="text-6xl">😊</div>
             <div className="flex-1">
               <div className="flex items-baseline gap-2">
-                <h2 className="text-amber-400">Alegría</h2>
-                <span className="text-slate-400">Emoción dominante</span>
+                <h2 className="text-amber-400">Joy</h2>
+                <span className="text-slate-400">Dominant emotion</span>
               </div>
               <div className="mt-2 flex items-center gap-2">
                 <div className="flex-1 h-2 bg-slate-700 rounded-full overflow-hidden">
@@ -90,7 +90,7 @@ export function HomeScreen({ userName, onNavigate, activeTab, onTabChange }: Hom
             <div className="w-12 h-12 rounded-full bg-indigo-500/20 flex items-center justify-center">
               <Plus className="w-6 h-6 text-indigo-400" />
             </div>
-            <span className="text-slate-300 text-center">Nueva entrada</span>
+            <span className="text-slate-300 text-center">New entry</span>
           </Card>
           
           <Card 
@@ -100,7 +100,7 @@ export function HomeScreen({ userName, onNavigate, activeTab, onTabChange }: Hom
             <div className="w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center">
               <span className="text-2xl">🎤</span>
             </div>
-            <span className="text-slate-300 text-center">Voz</span>
+            <span className="text-slate-300 text-center">Voice</span>
           </Card>
           
           <Card 
@@ -110,7 +110,7 @@ export function HomeScreen({ userName, onNavigate, activeTab, onTabChange }: Hom
             <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center">
               <span className="text-2xl">💪</span>
             </div>
-            <span className="text-slate-300 text-center">Hábitos</span>
+            <span className="text-slate-300 text-center">Habits</span>
           </Card>
           
           <Card 
@@ -120,7 +120,7 @@ export function HomeScreen({ userName, onNavigate, activeTab, onTabChange }: Hom
             <div className="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center">
               <Upload className="w-6 h-6 text-amber-400" />
             </div>
-            <span className="text-slate-300 text-center">Importar</span>
+            <span className="text-slate-300 text-center">Import</span>
           </Card>
           
           <Card 
@@ -130,7 +130,7 @@ export function HomeScreen({ userName, onNavigate, activeTab, onTabChange }: Hom
             <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center">
               <span className="text-2xl">🧘</span>
             </div>
-            <span className="text-slate-300 text-center">Modo Zen - Escribe sin distracciones</span>
+            <span className="text-slate-300 text-center">Zen Mode - Write without distractions</span>
           </Card>
         </div>
         
@@ -138,7 +138,7 @@ export function HomeScreen({ userName, onNavigate, activeTab, onTabChange }: Hom
         <div>
           <div className="flex items-center gap-2 mb-4">
             <Lightbulb className="w-5 h-5 text-amber-400" />
-            <h3 className="text-slate-300">Recomendaciones para ti</h3>
+            <h3 className="text-slate-300">Recommendations for you</h3>
           </div>
           <div className="space-y-3">
             {recommendations.map(rec => (
@@ -152,7 +152,7 @@ export function HomeScreen({ userName, onNavigate, activeTab, onTabChange }: Hom
                     <div className="flex items-start justify-between gap-2 mb-1">
                       <h4 className="text-slate-200">{rec.title}</h4>
                       {rec.priority === 'high' && (
-                        <Badge type="status" status="warning">Alta</Badge>
+                        <Badge type="status" status="warning">High</Badge>
                       )}
                     </div>
                     <p className="text-sm text-slate-400 mb-3">{rec.description}</p>
@@ -164,19 +164,19 @@ export function HomeScreen({ userName, onNavigate, activeTab, onTabChange }: Hom
                           className="flex items-center gap-1 px-2 py-1 text-xs text-green-400 hover:bg-green-500/10 rounded transition-colors"
                         >
                           <ThumbsUp className="w-3 h-3" />
-                          Útil
+                          Helpful
                         </button>
                         <button
                           onClick={() => handleFeedback(rec.id, false)}
                           className="flex items-center gap-1 px-2 py-1 text-xs text-slate-500 hover:bg-slate-700 rounded transition-colors"
                         >
                           <ThumbsDown className="w-3 h-3" />
-                          No útil
+                          Not helpful
                         </button>
                       </div>
                     ) : (
                       <p className="text-xs text-green-400">
-                        ✓ Gracias por tu feedback
+                        ✓ Thanks for your feedback
                       </p>
                     )}
                   </div>
@@ -188,7 +188,7 @@ export function HomeScreen({ userName, onNavigate, activeTab, onTabChange }: Hom
         
         {/* Recent Entries */}
         <div>
-          <h3 className="text-slate-300 mb-4">Recientes</h3>
+          <h3 className="text-slate-300 mb-4">Recent</h3>
           <div className="space-y-3">
             {recentEntries.map(entry => (
               <Card 
@@ -213,10 +213,10 @@ export function HomeScreen({ userName, onNavigate, activeTab, onTabChange }: Hom
           <div className="flex gap-3">
             <TrendingUp className="w-6 h-6 text-indigo-400 flex-shrink-0" />
             <div>
-              <h3 className="text-indigo-300 mb-2">Insight detectado</h3>
+              <h3 className="text-indigo-300 mb-2">Insight detected</h3>
               <p className="text-slate-300 text-sm">
-                Cuando duermes más de 7 horas, tu nivel de alegría aumenta en promedio un 35%. 
-                Intenta mantener este hábito de sueño consistente.
+                When you sleep more than 7 hours, your joy level increases by an average of 35%. 
+                Try to maintain this consistent sleep habit.
               </p>
             </div>
           </div>

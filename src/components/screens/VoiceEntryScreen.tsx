@@ -31,11 +31,11 @@ export function VoiceEntryScreen({ onClose, onStop }: VoiceEntryScreenProps) {
     <div className="min-h-screen bg-slate-900 flex flex-col">
       {/* Header */}
       <div className="flex items-center justify-between px-6 py-4 border-b border-slate-700/50">
-        <h2 className="text-slate-200">Grabando</h2>
+        <h2 className="text-slate-200">Recording</h2>
         <button
           onClick={onClose}
           className="p-2 hover:bg-slate-700 rounded-lg transition-colors text-slate-400"
-          aria-label="Cancelar"
+          aria-label="Cancel"
         >
           <X className="w-6 h-6" />
         </button>
@@ -43,7 +43,7 @@ export function VoiceEntryScreen({ onClose, onStop }: VoiceEntryScreenProps) {
       
       {/* Main Content */}
       <div className="flex-1 flex flex-col items-center justify-center px-6">
-        <p className="text-slate-400 mb-8">Escuchamos...</p>
+        <p className="text-slate-400 mb-8">We're listening...</p>
         
         {/* Timer */}
         <div className="text-6xl mb-12 text-slate-200 font-mono">
@@ -74,7 +74,7 @@ export function VoiceEntryScreen({ onClose, onStop }: VoiceEntryScreenProps) {
         {/* Audio Level Indicator */}
         <div className="w-full max-w-md">
           <div className="flex items-center gap-3">
-            <span className="text-sm text-slate-400">Nivel:</span>
+            <span className="text-sm text-slate-400">Level:</span>
             <div className="flex-1 h-2 bg-slate-800 rounded-full overflow-hidden">
               <div
                 className="h-full bg-gradient-to-r from-green-500 to-indigo-500 transition-all duration-150"
@@ -95,7 +95,7 @@ export function VoiceEntryScreen({ onClose, onStop }: VoiceEntryScreenProps) {
           size="lg"
         >
           <Square className="w-5 h-5 mr-2" />
-          Detener grabación
+          Stop recording
         </Button>
       </div>
     </div>

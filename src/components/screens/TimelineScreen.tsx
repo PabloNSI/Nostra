@@ -35,11 +35,11 @@ export function TimelineScreen({ activeTab, onTabChange }: TimelineScreenProps) 
     };
   });
   
-  const weekDays = ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
+  const weekDays = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
   
   return (
     <div className="min-h-screen bg-slate-900 pb-20">
-      <Header title="Timeline Emocional" />
+      <Header title="Emotional Timeline" />
       
       <main className="px-6 py-6 space-y-6">
         {/* View Controls */}
@@ -48,7 +48,7 @@ export function TimelineScreen({ activeTab, onTabChange }: TimelineScreenProps) 
             <button className="p-2 hover:bg-slate-700 rounded-lg transition-colors">
               <ChevronLeft className="w-5 h-5" />
             </button>
-            <h3 className="text-slate-200 min-w-[140px] text-center">Diciembre 2025</h3>
+            <h3 className="text-slate-200 min-w-[140px] text-center">December 2025</h3>
             <button className="p-2 hover:bg-slate-700 rounded-lg transition-colors">
               <ChevronRight className="w-5 h-5" />
             </button>
@@ -70,7 +70,7 @@ export function TimelineScreen({ activeTab, onTabChange }: TimelineScreenProps) 
                   : 'text-slate-400 hover:text-slate-300'
               }`}
             >
-              {mode === 'week' ? 'Semana' : mode === 'month' ? 'Mes' : 'Año'}
+              {mode === 'week' ? 'Week' : mode === 'month' ? 'Month' : 'Year'}
             </button>
           ))}
         </div>
@@ -106,7 +106,7 @@ export function TimelineScreen({ activeTab, onTabChange }: TimelineScreenProps) 
                     text-sm text-white
                     group relative
                   `}
-                  aria-label={`Día ${day.day}`}
+                  aria-label={`Day ${day.day}`}
                 >
                   <span className="opacity-70 group-hover:opacity-100">{day.day}</span>
                   {day.entries > 0 && (
@@ -120,36 +120,36 @@ export function TimelineScreen({ activeTab, onTabChange }: TimelineScreenProps) 
         
         {/* Legend */}
         <Card className="p-6">
-          <h3 className="text-slate-300 mb-4">Leyenda</h3>
+          <h3 className="text-slate-300 mb-4">Legend</h3>
           <div className="grid grid-cols-2 gap-3">
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded bg-amber-400" />
-              <span className="text-sm text-slate-400">Alegría</span>
+              <span className="text-sm text-slate-400">Joy</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded bg-blue-500" />
-              <span className="text-sm text-slate-400">Tristeza</span>
+              <span className="text-sm text-slate-400">Sadness</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded bg-red-500" />
-              <span className="text-sm text-slate-400">Enfado</span>
+              <span className="text-sm text-slate-400">Anger</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded bg-purple-500" />
-              <span className="text-sm text-slate-400">Miedo</span>
+              <span className="text-sm text-slate-400">Fear</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded bg-pink-500" />
-              <span className="text-sm text-slate-400">Sorpresa</span>
+              <span className="text-sm text-slate-400">Surprise</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded bg-gray-500" />
-              <span className="text-sm text-slate-400">Fatiga</span>
+              <span className="text-sm text-slate-400">Fatigue</span>
             </div>
           </div>
           <div className="mt-4 pt-4 border-t border-slate-700">
             <p className="text-sm text-slate-400">
-              La intensidad del color representa la intensidad emocional (1-10)
+              Color intensity represents emotional intensity (1-10)
             </p>
           </div>
         </Card>

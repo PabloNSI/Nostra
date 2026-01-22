@@ -14,7 +14,7 @@ interface SettingsScreenProps {
 
 export function SettingsScreen({ activeTab, onTabChange, onLogout }: SettingsScreenProps) {
   const [settings, setSettings] = useState({
-    name: 'Usuario',
+    name: 'User',
     language: 'es',
     variant: 'ES',
     defaultMode: 'full',
@@ -26,12 +26,12 @@ export function SettingsScreen({ activeTab, onTabChange, onLogout }: SettingsScr
   
   return (
     <div className="min-h-screen bg-slate-900 pb-20">
-      <Header title="Configuración" />
+      <Header title="Settings" />
       
       <main className="px-6 py-6 space-y-6">
         {/* Account Section */}
         <div>
-          <h3 className="text-slate-400 text-sm mb-4">CUENTA</h3>
+          <h3 className="text-slate-400 text-sm mb-4">ACCOUNT</h3>
           <Card className="p-6 space-y-4">
             <div className="flex items-center gap-4">
               <div className="w-16 h-16 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
@@ -41,7 +41,7 @@ export function SettingsScreen({ activeTab, onTabChange, onLogout }: SettingsScr
                 <Input
                   value={settings.name}
                   onChange={(e) => setSettings({ ...settings, name: e.target.value })}
-                  placeholder="Tu nombre"
+                  placeholder="Your name"
                 />
               </div>
             </div>
@@ -50,14 +50,14 @@ export function SettingsScreen({ activeTab, onTabChange, onLogout }: SettingsScr
         
         {/* Preferences Section */}
         <div>
-          <h3 className="text-slate-400 text-sm mb-4">PREFERENCIAS</h3>
+          <h3 className="text-slate-400 text-sm mb-4">PREFERENCES</h3>
           <Card className="divide-y divide-slate-700/50">
             <div className="p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <Globe className="w-5 h-5 text-slate-400" />
                 <div>
-                  <p className="text-slate-300">Idioma</p>
-                  <p className="text-sm text-slate-500">Español</p>
+                  <p className="text-slate-300">Language</p>
+                  <p className="text-sm text-slate-500">Spanish</p>
                 </div>
               </div>
               <select
@@ -65,9 +65,9 @@ export function SettingsScreen({ activeTab, onTabChange, onLogout }: SettingsScr
                 onChange={(e) => setSettings({ ...settings, language: e.target.value })}
                 className="px-3 py-2 rounded-lg bg-slate-700 border border-slate-600 text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               >
-                <option value="es">Español</option>
+                <option value="es">Spanish</option>
                 <option value="en">English</option>
-                <option value="fr">Français</option>
+                <option value="fr">French</option>
               </select>
             </div>
             
@@ -75,8 +75,8 @@ export function SettingsScreen({ activeTab, onTabChange, onLogout }: SettingsScr
               <div className="flex items-center gap-3">
                 <Globe className="w-5 h-5 text-slate-400" />
                 <div>
-                  <p className="text-slate-300">Variante regional</p>
-                  <p className="text-sm text-slate-500">España</p>
+                  <p className="text-slate-300">Regional variant</p>
+                  <p className="text-sm text-slate-500">Spain</p>
                 </div>
               </div>
               <select
@@ -84,8 +84,8 @@ export function SettingsScreen({ activeTab, onTabChange, onLogout }: SettingsScr
                 onChange={(e) => setSettings({ ...settings, variant: e.target.value })}
                 className="px-3 py-2 rounded-lg bg-slate-700 border border-slate-600 text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               >
-                <option value="ES">España (ES)</option>
-                <option value="MX">México (MX)</option>
+                <option value="ES">Spain (ES)</option>
+                <option value="MX">Mexico (MX)</option>
                 <option value="AR">Argentina (AR)</option>
                 <option value="CO">Colombia (CO)</option>
               </select>
@@ -93,8 +93,8 @@ export function SettingsScreen({ activeTab, onTabChange, onLogout }: SettingsScr
             
             <div className="p-4 flex items-center justify-between">
               <div>
-                <p className="text-slate-300">Modo por defecto</p>
-                <p className="text-sm text-slate-500">Interfaz inicial</p>
+                <p className="text-slate-300">Default mode</p>
+                <p className="text-sm text-slate-500">Initial interface</p>
               </div>
               <div className="flex gap-2 bg-slate-700 p-1 rounded-lg">
                 <button
@@ -122,8 +122,8 @@ export function SettingsScreen({ activeTab, onTabChange, onLogout }: SettingsScr
             
             <div className="p-4 flex items-center justify-between">
               <div>
-                <p className="text-slate-300">Tema</p>
-                <p className="text-sm text-slate-500">Apariencia visual</p>
+                <p className="text-slate-300">Theme</p>
+                <p className="text-sm text-slate-500">Visual appearance</p>
               </div>
               <div className="flex gap-2 bg-slate-700 p-1 rounded-lg">
                 <button
@@ -134,7 +134,7 @@ export function SettingsScreen({ activeTab, onTabChange, onLogout }: SettingsScr
                       : 'text-slate-400'
                   }`}
                 >
-                  Oscuro
+                  Dark
                 </button>
                 <button
                   onClick={() => setSettings({ ...settings, theme: 'light' })}
@@ -144,7 +144,7 @@ export function SettingsScreen({ activeTab, onTabChange, onLogout }: SettingsScr
                       : 'text-slate-400'
                   }`}
                 >
-                  Claro
+                  Light
                 </button>
               </div>
             </div>
@@ -153,24 +153,24 @@ export function SettingsScreen({ activeTab, onTabChange, onLogout }: SettingsScr
         
         {/* Voice & Audio Section */}
         <div>
-          <h3 className="text-slate-400 text-sm mb-4">VOZ Y AUDIO</h3>
+          <h3 className="text-slate-400 text-sm mb-4">VOICE & AUDIO</h3>
           <Card className="p-6 space-y-4">
             <div>
-              <label className="text-slate-300 mb-2 block">Voz TTS</label>
+              <label className="text-slate-300 mb-2 block">TTS Voice</label>
               <select
                 value={settings.ttsVoice}
                 onChange={(e) => setSettings({ ...settings, ttsVoice: e.target.value })}
                 className="w-full px-3 py-2 rounded-lg bg-slate-700 border border-slate-600 text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               >
-                <option value="es-ES-Standard-A">Español (Mujer) - Estándar</option>
-                <option value="es-ES-Standard-B">Español (Hombre) - Estándar</option>
-                <option value="es-MX-Standard-A">Español MX (Mujer)</option>
+                <option value="es-ES-Standard-A">Spanish (Female) - Standard</option>
+                <option value="es-ES-Standard-B">Spanish (Male) - Standard</option>
+                <option value="es-MX-Standard-A">Spanish MX (Female)</option>
               </select>
             </div>
             
             <div>
               <label className="text-slate-300 mb-2 block">
-                Velocidad TTS: {settings.ttsSpeed}x
+                TTS Speed: {settings.ttsSpeed}x
               </label>
               <input
                 type="range"
@@ -185,21 +185,21 @@ export function SettingsScreen({ activeTab, onTabChange, onLogout }: SettingsScr
             
             <Button variant="ghost" className="w-full">
               <Volume2 className="w-4 h-4 mr-2" />
-              Escuchar prueba
+              Listen to test
             </Button>
           </Card>
         </div>
         
         {/* Privacy Section */}
         <div>
-          <h3 className="text-slate-400 text-sm mb-4">PRIVACIDAD</h3>
+          <h3 className="text-slate-400 text-sm mb-4">PRIVACY</h3>
           <Card className="divide-y divide-slate-700/50">
             <div className="p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <Lock className="w-5 h-5 text-green-400" />
                 <div>
-                  <p className="text-slate-300">Cifrado local</p>
-                  <p className="text-sm text-slate-500">AES-256 activado</p>
+                  <p className="text-slate-300">Local encryption</p>
+                  <p className="text-sm text-slate-500">AES-256 enabled</p>
                 </div>
               </div>
               <div className="w-2 h-2 rounded-full bg-green-400" />
@@ -208,7 +208,7 @@ export function SettingsScreen({ activeTab, onTabChange, onLogout }: SettingsScr
             <button className="p-4 flex items-center justify-between w-full hover:bg-slate-700/30 transition-colors">
               <div className="flex items-center gap-3">
                 <Download className="w-5 h-5 text-slate-400" />
-                <p className="text-slate-300">Exportar datos</p>
+                <p className="text-slate-300">Export data</p>
               </div>
               <ChevronRight className="w-5 h-5 text-slate-500" />
             </button>
@@ -216,14 +216,14 @@ export function SettingsScreen({ activeTab, onTabChange, onLogout }: SettingsScr
             <button className="p-4 flex items-center justify-between w-full hover:bg-slate-700/30 transition-colors">
               <div className="flex items-center gap-3">
                 <Upload className="w-5 h-5 text-slate-400" />
-                <p className="text-slate-300">Importar datos</p>
+                <p className="text-slate-300">Import data</p>
               </div>
               <ChevronRight className="w-5 h-5 text-slate-500" />
             </button>
             
             <div className="p-4">
               <label className="text-slate-300 mb-2 block">
-                Bloqueo automático: {settings.autoLock} min
+                Auto-lock: {settings.autoLock} min
               </label>
               <input
                 type="range"
@@ -239,18 +239,18 @@ export function SettingsScreen({ activeTab, onTabChange, onLogout }: SettingsScr
         
         {/* About Section */}
         <div>
-          <h3 className="text-slate-400 text-sm mb-4">SOBRE</h3>
+          <h3 className="text-slate-400 text-sm mb-4">ABOUT</h3>
           <Card className="divide-y divide-slate-700/50">
             <div className="p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <Info className="w-5 h-5 text-slate-400" />
-                <p className="text-slate-300">Versión</p>
+                <p className="text-slate-300">Version</p>
               </div>
               <p className="text-slate-500">1.0.0-beta</p>
             </div>
             
             <button className="p-4 flex items-center justify-between w-full hover:bg-slate-700/30 transition-colors">
-              <p className="text-slate-300">Política de privacidad</p>
+              <p className="text-slate-300">Privacy policy</p>
               <ChevronRight className="w-5 h-5 text-slate-500" />
             </button>
           </Card>
@@ -263,7 +263,7 @@ export function SettingsScreen({ activeTab, onTabChange, onLogout }: SettingsScr
           onClick={onLogout}
         >
           <LogOut className="w-5 h-5 mr-2" />
-          Cerrar sesión
+          Log out
         </Button>
       </main>
       

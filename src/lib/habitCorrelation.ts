@@ -26,7 +26,7 @@ export interface HabitDefinition {
 export interface HabitEmotionCorrelation {
   habitId: string;
   emotion: string;
-  correlation: number; // -1 a 1
+  correlation: number; // -1 to 1
   strength: 'weak' | 'moderate' | 'strong';
   direction: 'positive' | 'negative';
   samples: number;
@@ -116,11 +116,11 @@ export function analyzeHabitEmotionCorrelation(
   let interpretation = '';
   
   if (direction === 'positive' && strength !== 'weak') {
-    interpretation = `Más ${habit.habitId} está asociado con mayor ${targetEmotion}`;
+    interpretation = `More ${habit.habitId} is associated with higher ${targetEmotion}`;
   } else if (direction === 'negative' && strength !== 'weak') {
-    interpretation = `Más ${habit.habitId} está asociado con menor ${targetEmotion}`;
+    interpretation = `More ${habit.habitId} is associated with lower ${targetEmotion}`;
   } else {
-    interpretation = `No hay correlación significativa entre ${habit.habitId} y ${targetEmotion}`;
+    interpretation = `No significant correlation between ${habit.habitId} and ${targetEmotion}`;
   }
   
   return {
@@ -156,10 +156,10 @@ export function generateRecommendations(
     
     // Positive correlation with positive emotion
     if (corr.direction === 'positive' && 
-        ['joy', 'esperanza'].includes(corr.emotion)) {
+        ['joy', 'hope'].includes(corr.emotion)) {
       priority = corr.strength === 'strong' ? 'high' : 'medium';
       type = 'boost';
-      action = `Aumenta ${habit.name} para mejorar tu ${corr.emotion}`;
+      action = `Increase ${habit.name} to improve your ${corr.emotion}`;
     }
     
     // Negative correlation with negative emotion
@@ -167,7 +167,7 @@ export function generateRecommendations(
              ['sadness', 'anger', 'fear'].includes(corr.emotion)) {
       priority = corr.strength === 'strong' ? 'high' : 'medium';
       type = 'boost';
-      action = `Aumenta ${habit.name} para reducir ${corr.emotion}`;
+      action = `Increase ${habit.name} to reduce ${corr.emotion}`;
     }
     
     // Positive correlation with negative emotion
@@ -175,7 +175,7 @@ export function generateRecommendations(
              ['sadness', 'anger', 'fear'].includes(corr.emotion)) {
       priority = 'high';
       type = 'avoid';
-      action = `Reduce ${habit.name} para mejorar tu estado emocional`;
+      action = `Reduce ${habit.name} to improve your emotional state`;
     }
     
     const estimatedChange = Math.abs(corr.correlation) * 30; // Scale to percentage

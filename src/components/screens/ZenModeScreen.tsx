@@ -23,7 +23,7 @@ export function ZenModeScreen({ onSave }: ZenModeScreenProps) {
         <textarea
           value={text}
           onChange={(e) => setText(e.target.value)}
-          placeholder="Escribe tus pensamientos..."
+          placeholder="Write your thoughts..."
           className="w-full min-h-[400px] bg-transparent text-slate-200 text-xl placeholder-slate-700 resize-none focus:outline-none border-none"
           autoFocus
         />
@@ -34,13 +34,13 @@ export function ZenModeScreen({ onSave }: ZenModeScreenProps) {
             onClick={handleSave}
             className="text-sm text-slate-500 hover:text-slate-400 transition-colors"
           >
-            {text.length > 0 ? 'Guardar' : ''}
+            {text.length > 0 ? 'Save' : ''}
           </button>
           
           <div className="flex items-center gap-6">
             <button
               className="w-12 h-12 rounded-full bg-slate-800/50 hover:bg-slate-700/50 flex items-center justify-center transition-colors group"
-              aria-label="Grabar voz"
+              aria-label="Record voice"
             >
               <Mic className="w-5 h-5 text-slate-500 group-hover:text-slate-400" />
             </button>
@@ -49,7 +49,7 @@ export function ZenModeScreen({ onSave }: ZenModeScreenProps) {
               onClick={() => setAnalyze(!analyze)}
               className="text-xs text-slate-600 hover:text-slate-500 transition-colors"
             >
-              {analyze ? 'Analizar después' : 'Analizar ahora?'}
+              {analyze ? 'Analyze later' : 'Analyze now?'}
             </button>
           </div>
         </div>
@@ -58,7 +58,7 @@ export function ZenModeScreen({ onSave }: ZenModeScreenProps) {
       {/* Subtle hint */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
         <p className="text-xs text-slate-700">
-          Modo Zen · Sin distracciones
+          Zen Mode · No distractions
         </p>
       </div>
     </div>
